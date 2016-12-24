@@ -1,6 +1,8 @@
-<head>
-	<title>Welcome | Drunkenprost</title>
-</head>
-<body>
-	<p>drunkenprost</p>
-</body>
+{% extends 'main.html' %}
+{% block title %}Welcome{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block content %}
+	<div>
+		<p>hello everyone testing</p>
+	</div>
+{% endblock %}

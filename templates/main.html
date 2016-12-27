@@ -2,12 +2,27 @@
 <html>
 	<head>
 		{% block head %}
-		<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+		<link rel='stylesheet' href="{{ url_for('custom_static', filename='reset.css') }}">
+		<link rel='stylesheet' href="{{ url_for('custom_static', filename='main.css') }}">
 		<title>{% block title %}{% endblock %} - Drunkenprost</title>
 		{% endblock %}
 	</head>
 	<body>
-		<div id="content">{% block content %}{% endblock %}</div>
-		<div id="footer">{% block footer %}footer{% endblock %}</div>
+		<div id='header'>
+			<div>
+				<a id='home_link' href='/'>Drunkenprost.com</a>
+				{% for topic in ret_dict.topics %}
+					<a href='beers'>{{ topic }}</a>
+				{% endfor %}
+			</div>
+		</div>
+		<div id='content'>
+			 <div id='sidebar'>
+				{% block sidebar %}
+				{% endblock %}
+			</div>
+			<div id='main'>{% block content %}{% endblock %}</div>
+		</div>
+		<div id="footer"><p>Drunkenprost | 2016</p><div>
 	</body>
 </html>

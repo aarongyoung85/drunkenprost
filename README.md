@@ -1,2 +1,2 @@
 # drunkenprost
-Personal beer blog
+Personal beer blog built in python, Flask, and SQLAlchemy

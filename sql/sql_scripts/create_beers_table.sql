@@ -7,10 +7,11 @@ CREATE TABLE IF NOT EXISTS `beers` (
 	beer_type CHAR(36) NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000',
 	country CHAR(36) NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000',
 	abv DECIMAL(3,1) DEFAULT NULL,
-	beer_name VARCHAR(100) DEFAULT NULL,
+	link_name VARCHAR(100) DEFAULT NULL,
+	display_name VARCHAR(100) DEFAULT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (brewery) REFERENCES `breweries` (id),
 	FOREIGN KEY (beer_type) REFERENCES `beer_types` (id),
 	FOREIGN KEY (country) REFERENCES `countries` (id),
-	INDEX beer_name (beer_name)
+	INDEX link_name (link_name)
 );

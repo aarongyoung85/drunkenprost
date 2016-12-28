@@ -1,5 +1,5 @@
 from sql import sqlserver
-from sql.drunkenprost_orm import Topics
+from sql.drunkenprost_orm import Topics, topics_map
 
 class HomePage(object):
 
@@ -14,3 +14,16 @@ class HomePage(object):
             topics.append(row.topic)
 
         return topics
+
+    def get_recent_entries_by_topic(self):
+        recent_entries = {}
+        topics = self.get_topics()
+
+        for topic in topics:
+            result = self.db.query(topics_map[topic]).order_by(topics_map[topic].created.desc()).limit(3).all()
+
+            recent_entries[topic] = []
+            for row in result:
+                recent_entries[topic].append({'id': row.id, 'display_name': row.display_name})
+
+        return recent_entries

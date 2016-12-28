@@ -37,6 +37,29 @@ body {
 	float: left;
 }
 
+#content #sidebar .sidebar_title {
+	text-align: center;
+	margin-top: 10px;
+}
+
+#content #sidebar .topic {
+	margin: 10px 0 0 10px;
+}
+
+#content #sidebar .recent_entry {
+	list-style-type: disc;
+	margin: 10px 0 0 10px;
+}
+
+#content #sidebar .recent_entry span {
+	margin-left: -10px;
+}
+
+#content #sidebar .recent_entry span:hover {
+	color: red;
+	cursor: pointer;
+}
+
 #content #main {
 	float: right;
 	width: 700px;

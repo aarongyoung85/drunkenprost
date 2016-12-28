@@ -19,7 +19,13 @@
 		<div id='content'>
 			 <div id='sidebar'>
 				{% block sidebar %}
-					<p>main sidebar</p>
+					<p class='sidebar_title'>Recent entries</p>
+					{% for topic, entries in ret_dict.recent_entries.items() %}
+						<p class='topic'>{{ topic }}</p>
+						{% for row in entries %}
+							<li class='recent_entry' value="{{ row.id }}"><span>{{ row.display_name }}</span></li>
+						{% endfor %}
+					{% endfor %}
 				{% endblock %}
 			</div>
 			<div id='main'>{% block content %}{% endblock %}</div>

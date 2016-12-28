@@ -4,11 +4,10 @@ app = Flask(__name__)
 logger = app.logger
 app.config.from_object('config')
 
-def get_topics():
-    model = HomePage()
+def get_topics(homepage_model):
     topics = None
     try:
-        topics = model.get_topics()
+        topics = homepage_model.get_topics()
     except Exception, e:
         logger.error("ERROR %s %s"%(type(e), str(e)))
 
@@ -21,14 +20,17 @@ def custom_static(filename):
 
 @app.route('/beer')
 def beer_page():
+    model = HomePage()
     ret_dict = {}
-    ret_dict['topics'] = get_topics()
+    ret_dict['topics'] = get_topics(model)
     return render_template('beer.html', ret_dict=ret_dict)
 
 @app.route('/')
 def index():
+    model = HomePage()
     ret_dict = {}
-    ret_dict['topics'] = get_topics()
+    ret_dict['topics'] = get_topics(model)
+    ret_dict['recent_entries'] = model.get_recent_entries_by_topic()
     return render_template('index.html', ret_dict=ret_dict)
     
 if __name__ == '__main__':

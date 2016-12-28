@@ -26,7 +26,12 @@ body {
 	font-size: 20px;
 	text-decoration: none;
 	color: red;
-	margin-top: 5px;
+	margin: 5px 15px 0 0;
+}
+
+#header p {
+	text-align: right;
+	padding-top: 10px;
 }
 
 #content #sidebar {
@@ -43,7 +48,7 @@ body {
 }
 
 #content #sidebar .topic {
-	margin: 10px 0 0 10px;
+	margin: 20px 0 0 10px;
 }
 
 #content #sidebar .recent_entry {

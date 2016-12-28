@@ -11,21 +11,29 @@
 		<div id='header'>
 			<div>
 				<a id='home_link' href='/'>Drunkenprost.com</a>
-				{% for topic in ret_dict.topics %}
-					<a href="{{ topic }}">{{ topic }}</a>
-				{% endfor %}
+				{% if ret_dict.topics is not none %}
+					{% for topic in ret_dict.topics %}
+						<a href="{{ topic }}">{{ topic }}</a>
+					{% endfor %}
+				{% else %}
+					<p>Oops! Something went wrong. Please try again later.</p>
+				{% endif %}
 			</div>
 		</div>
 		<div id='content'>
 			 <div id='sidebar'>
 				{% block sidebar %}
 					<p class='sidebar_title'>Recent entries</p>
-					{% for topic, entries in ret_dict.recent_entries.items() %}
-						<p class='topic'>{{ topic }}</p>
-						{% for row in entries %}
-							<li class='recent_entry' value="{{ row.id }}"><span>{{ row.display_name }}</span></li>
+					{% if ret_dict.recent_entries is not none %}
+						{% for topic, entries in ret_dict.recent_entries.items() %}
+							<p class='topic'>{{ topic }}</p>
+							{% for row in entries %}
+								<li class='recent_entry' value="{{ row.id }}"><span>{{ row.display_name }}</span></li>
+							{% endfor %}
 						{% endfor %}
-					{% endfor %}
+					{% else %}
+						<p class='topic'>Coulnd't get recent entries at this time</p>
+					{% endif %}
 				{% endblock %}
 			</div>
 			<div id='main'>{% block content %}{% endblock %}</div>

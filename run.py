@@ -9,7 +9,7 @@ def get_topics(homepage_model):
     try:
         topics = homepage_model.get_topics()
     except Exception, e:
-        logger.error("ERROR %s %s"%(type(e), str(e)))
+        logger.error("Something went wrong getting topics %s %s"%(type(e), str(e)))
 
     return topics
 
@@ -25,13 +25,25 @@ def beer_page():
     ret_dict['topics'] = get_topics(model)
     return render_template('beer.html', ret_dict=ret_dict)
 
+@app.route('/wine')
+def wine_page():
+    model = HomePage()
+    ret_dict = {}
+    ret_dict['topics'] = get_topics(model)
+    return render_template('wine.html', ret_dict=ret_dict)
+
 @app.route('/')
 def index():
     model = HomePage()
     ret_dict = {}
     ret_dict['topics'] = get_topics(model)
-    ret_dict['recent_entries'] = model.get_recent_entries_by_topic()
-    logger.error("ZZZ %s"%ret_dict['recent_entries'])
+
+    try:
+        ret_dict['recent_entries'] = model.get_recent_entries_by_topic()
+    except Exception, e:
+        ret_dict['recent_entries'] = None
+        logger.error("Something went wrong getting recent entries %s %s"%(type(e), str(e)))
+        
     return render_template('index.html', ret_dict=ret_dict)
     
 if __name__ == '__main__':

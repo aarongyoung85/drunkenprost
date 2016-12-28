@@ -31,6 +31,7 @@ def index():
     ret_dict = {}
     ret_dict['topics'] = get_topics(model)
     ret_dict['recent_entries'] = model.get_recent_entries_by_topic()
+    logger.error("ZZZ %s"%ret_dict['recent_entries'])
     return render_template('index.html', ret_dict=ret_dict)
     
 if __name__ == '__main__':

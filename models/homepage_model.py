@@ -24,6 +24,6 @@ class HomePage(object):
 
             recent_entries[topic] = []
             for row in result:
-                recent_entries[topic].append({'id': row.id, 'display_name': row.display_name})
+                recent_entries[topic].append({'id': row.id, 'display_name': row.display_name.decode('utf-8')})
 
         return recent_entries

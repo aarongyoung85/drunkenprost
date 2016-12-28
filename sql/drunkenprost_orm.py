@@ -74,6 +74,6 @@ class Wines(Base):
     display_name = Column(String)
 
 topics_map = {
-    'beer': Beers,
-    'wine': Wines
+    'Beer': Beers,
+    'Wine': Wines
 }

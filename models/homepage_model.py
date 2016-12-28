@@ -1,5 +1,8 @@
+from flask import Flask
 from sql import sqlserver
 from sql.drunkenprost_orm import Topics, topics_map
+app = Flask(__name__)
+logger = app.logger
 
 class HomePage(object):
 
@@ -11,7 +14,7 @@ class HomePage(object):
         result = self.db.query(Topics).all()
 
         for row in result:
-            topics.append(row.topic)
+            topics.append(row.topic.capitalize())
 
         return topics
 

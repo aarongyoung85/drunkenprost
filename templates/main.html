@@ -13,7 +13,7 @@
 				<a id='home_link' href='/'>Drunkenprost.com</a>
 				{% if ret_dict.topics is not none %}
 					{% for topic in ret_dict.topics %}
-						<a href="{{ topic }}">{{ topic }}</a>
+						<a href="{{ topic.lower() }}">{{ topic }}</a>
 					{% endfor %}
 				{% else %}
 					<p>Oops! Something went wrong. Please try again later.</p>

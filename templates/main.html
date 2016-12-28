@@ -12,13 +12,14 @@
 			<div>
 				<a id='home_link' href='/'>Drunkenprost.com</a>
 				{% for topic in ret_dict.topics %}
-					<a href='beers'>{{ topic }}</a>
+					<a href="{{ topic }}">{{ topic }}</a>
 				{% endfor %}
 			</div>
 		</div>
 		<div id='content'>
 			 <div id='sidebar'>
 				{% block sidebar %}
+					<p>main sidebar</p>
 				{% endblock %}
 			</div>
 			<div id='main'>{% block content %}{% endblock %}</div>

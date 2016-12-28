@@ -19,11 +19,11 @@ def custom_static(filename):
     parts = filename.split('.')
     return send_from_directory(app.config['STATIC_PATHS'][parts[1]], filename)
 
-@app.route('/beers')
+@app.route('/beer')
 def beer_page():
     ret_dict = {}
     ret_dict['topics'] = get_topics()
-    return render_template('beers.html', ret_dict=ret_dict)
+    return render_template('beer.html', ret_dict=ret_dict)
 
 @app.route('/')
 def index():

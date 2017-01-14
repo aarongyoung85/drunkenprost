@@ -4,10 +4,11 @@ app = Flask(__name__)
 logger = app.logger
 app.config.from_object('config')
 
-def get_topics(homepage_model):
+def get_homepage_topics():
+    model = HomePage()
     topics = None
     try:
-        topics = homepage_model.get_topics()
+        topics = model.get_topics()
     except Exception, e:
         logger.error("Something went wrong getting topics %s %s"%(type(e), str(e)))
 
@@ -20,23 +21,21 @@ def custom_static(filename):
 
 @app.route('/beer')
 def beer_page():
-    model = HomePage()
     ret_dict = {}
-    ret_dict['topics'] = get_topics(model)
+    ret_dict['topics'] = get_homepage_topics()
     return render_template('beer.html', ret_dict=ret_dict)
 
 @app.route('/wine')
 def wine_page():
-    model = HomePage()
     ret_dict = {}
-    ret_dict['topics'] = get_topics(model)
+    ret_dict['topics'] = get_homepage_topics()
     return render_template('wine.html', ret_dict=ret_dict)
 
 @app.route('/')
 def index():
     model = HomePage()
     ret_dict = {}
-    ret_dict['topics'] = get_topics(model)
+    ret_dict['topics'] = get_homepage_topics()
 
     try:
         ret_dict['recent_entries'] = model.get_recent_entries_by_topic()

@@ -26,7 +26,6 @@ class HomePage(object):
             result = self.db.query(topics_map[topic]).order_by(topics_map[topic].created.desc()).limit(3).all()
 
             recent_entries[topic] = []
-            for row in result:
-                recent_entries[topic].append({'id': row.id, 'display_name': row.display_name.decode('utf-8')})
+            recent_entries[topic] = [{'id': row.id, 'display_name': row.display_name.decode('utf-8')} for row in result]
 
         return recent_entries
